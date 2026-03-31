@@ -1,0 +1,129 @@
+/* Add these styles to your existing CSS file */
+
+.expand-btn {
+  background: none;
+  border: none;
+  color: #007bff;
+  cursor: pointer;
+  font-size: 12px;
+  padding: 2px 6px;
+  margin-top: 4px;
+}
+
+.expand-btn:hover {
+  text-decoration: underline;
+}
+
+.expanded-row {
+  background-color: #f8f9fa;
+  border-bottom: 2px solid #dee2e6;
+}
+
+.expanded-details {
+  padding: 20px;
+  background: white;
+  margin: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+}
+
+.detail-section {
+  padding: 10px;
+}
+
+.detail-section h4 {
+  margin: 0 0 10px 0;
+  color: #333;
+  font-size: 14px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 5px;
+}
+
+.detail-section.full-width {
+  grid-column: 1 / -1;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 13px;
+}
+
+.detail-row span:first-child {
+  font-weight: 500;
+  color: #666;
+}
+
+.detail-row span:last-child {
+  text-align: right;
+  max-width: 200px;
+}
+
+.tentative-date-small {
+  font-size: 11px;
+  color: #666;
+  margin-top: 2px;
+}
+
+.more-dates {
+  font-size: 11px;
+  color: #007bff;
+  font-style: italic;
+}
+
+.requester-cell {
+  font-size: 13px;
+}
+
+.requester-name {
+  font-weight: 500;
+}
+
+.requester-id, .requester-email {
+  font-size: 11px;
+  color: #666;
+}
+
+.primary-hall {
+  font-weight: 500;
+}
+
+.backup-hall {
+  font-size: 11px;
+  color: #666;
+  margin-top: 2px;
+}
+
+/* Responsive design */
+@media (max-width: 1200px) {
+  .details-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .details-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .bookings-table {
+    font-size: 12px;
+  }
+  
+  .action-buttons {
+    flex-direction: column;
+    gap: 4px;
+  }
+  
+  .action-buttons button {
+    font-size: 11px;
+    padding: 4px 8px;
+  }
+}

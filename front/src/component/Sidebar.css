@@ -1,0 +1,160 @@
+/* SIDEBAR CONTAINER*/
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -260px;            /* hidden initially */
+  width: 260px;
+  height: 100vh;
+  background: #000000;
+  color: #ffffff;
+  padding: 20px;
+  box-shadow: 2px 0 10px rgba(0,0,0,0.3);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;  /* top menu + bottom footer */
+  transition: left 0.3s ease;
+  z-index: 2000;
+}
+
+/* Slide-in effect */
+.sidebar.open {
+  left: 0;
+}
+
+/*  CLOSE BUTTON*/
+.close-btn {
+  position: absolute;
+  top: 12px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 28px;
+  color: white;
+  cursor: pointer;
+  padding: 5px;
+}
+
+/*  MAIN MENU*/
+.sidebar-menu {
+  list-style: none;
+  padding: 70px 0 0 0; /* pushes menu down */
+  margin: 0;
+}
+
+.sidebar-menu li {
+  padding: 14px 0;
+  font-size: 17px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.sidebar-menu li:hover {
+  color: #4aa3ff;
+  padding-left: 5px;
+}
+
+/* BOTTOM SECTION*/
+.side-bottom {
+  padding-top: 20px;
+  border-top: 1px solid rgb(255, 255, 255);
+}
+
+/* Theme toggle button */
+.theme-toggle {
+  width: 100%;
+  padding: 10px 12px;
+  background: #333;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  margin-bottom: 20px;
+  font-size: 15px;
+  transition: background 0.2s ease;
+}
+
+.theme-toggle:hover {
+  background: #444;
+}
+
+/*  ADMIN CONTACT*/
+.admin-contact {
+  font-size: 14px;
+  opacity: 0.85;
+}
+
+.admin-name {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.admin-email {
+  color: #4aa3ff;
+  text-decoration: none;
+}
+
+.admin-email:hover {
+  text-decoration: underline;
+}
+.notification-item {
+  position: relative; /* Add this */
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 8px;
+  transition: background-color 0.3s;
+}
+
+.notification-item:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.notification-item span {
+  margin-left: 10px;
+}
+
+/* Notification count badge - position it near the text */
+.notif-count {
+  position: absolute; /* Change from relative to absolute */
+  top: 5px; /* Adjust vertical position */
+  right: 10px; /* Position near the right side */
+  background: linear-gradient(135deg, #ff416c, #ff4b2b);
+  color: white;
+  font-size: 0.7rem;
+  font-weight: bold;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: pulse 1.5s infinite;
+}
+
+/* Alternatively, position it inline with the text */
+.notification-item .notif-count-inline {
+  background: linear-gradient(135deg, #ff416c, #ff4b2b);
+  color: white;
+  font-size: 0.7rem;
+  font-weight: bold;
+  padding: 2px 8px;
+  border-radius: 10px;
+  margin-left: 10px;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(255, 65, 108, 0.7);
+  }
+  70% {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 6px rgba(255, 65, 108, 0);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(255, 65, 108, 0);
+  }
+}

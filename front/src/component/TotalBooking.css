@@ -1,0 +1,74 @@
+.total-bookings-container {
+  padding: 20px;
+  background-color: #f9fafb;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+}
+
+.total-bookings-container h1 {
+  font-size: 26px;
+  margin-bottom: 10px;
+  color: #222;
+}
+
+.total-bookings-container p {
+  margin-bottom: 20px;
+  font-size: 15px;
+  color: #555;
+}
+
+.bookings-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.bookings-table th,
+.bookings-table td {
+  padding: 14px 18px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.bookings-table th {
+  background-color: #3f51b5;
+  color: white;
+  text-transform: uppercase;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+}
+
+.bookings-table tr:hover {
+  background-color: #f1f5ff;
+}
+
+.status {
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 13px;
+}
+
+/* Status Colors */
+.status.pending {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.status.approved {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.status.completed {
+  background-color: #cce5ff;
+  color: #004085;
+}
+
+.status.cancelled {
+  background-color: #f8d7da;
+  color: #721c24;
+}

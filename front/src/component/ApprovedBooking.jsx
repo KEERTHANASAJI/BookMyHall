@@ -26,7 +26,20 @@ const ApprovedBooking = () => {
       
       if (result.success) {
         // Filter only approved bookings
-        const approvedBookings = result.data.filter(booking => booking.status === 'approved');
+        // const approvedBookings = result.data.filter(booking => booking.status === 'approved');
+        const today = new Date();
+today.setHours(0, 0, 0, 0); // normalize
+
+const approvedBookings = result.data.filter(booking => {
+  if (booking.status !== 'approved') return false;
+
+  if (!booking.startDate) return false;
+
+  const eventDate = new Date(booking.startDate);
+  eventDate.setHours(0, 0, 0, 0);
+
+  return eventDate >= today; // ✅ only future + today
+});
         setBookings(approvedBookings);
       } else {
         throw new Error(result.message || 'Failed to fetch bookings');
@@ -133,25 +146,27 @@ const handleDeleteBooking = async (bookingId) => {
 };
 
   return (
-    <div className="total-bookings-container">
+  <div className="total-bookings-container">
+    <div className="content-wrapper">
+
       <h1>Approved Bookings</h1>
       <p>Here are the approved events scheduled in the halls:</p>
-      <button 
-            className="new-booking-btn"
-            onClick={() => navigate('/admin')}
-          >
-           Back
-          </button>
-      {/* Refresh Button */}
+
+      <button
+        className="new-booking-btn"
+        onClick={() => navigate('/admin')}
+      >
+        Back
+      </button>
+
       <div className="refresh-section">
-        <button 
+        <button
           className="refresh-btn"
           onClick={fetchApprovedBookings}
           title="Refresh approved bookings"
         >
           🔄 Refresh
         </button>
-        <span className="last-updated">Showing {bookings.length} approved bookings</span>
       </div>
 
       <table className="bookings-table">
@@ -164,9 +179,9 @@ const handleDeleteBooking = async (bookingId) => {
             <th>Time</th>
             <th>Status</th>
             <th>Actions</th>
-
           </tr>
         </thead>
+
         <tbody>
           {bookings.map((booking) => (
             <tr key={booking._id}>
@@ -174,45 +189,43 @@ const handleDeleteBooking = async (bookingId) => {
               <td>{booking.email || booking.collegeId || 'N/A'}</td>
               <td>{formatDate(booking.startDate)}</td>
               <td>{booking.preferredHall}</td>
+
               <td>
-                {booking.bookingType === 'single' ? (
-                  `${formatTime(booking.startTime)} - ${formatTime(booking.endTime)}`
-                ) : (
-                  `Multiple Dates (${booking.tentativeDates?.length || 0})`
-                )}
+                {booking.bookingType === 'single'
+                  ? `${formatTime(booking.startTime)} - ${formatTime(booking.endTime)}`
+                  : `Multiple Dates (${booking.tentativeDates?.length || 0})`}
               </td>
+
               <td>
                 {getStatusBadge(booking.status)}
               </td>
+
               <td>
-  <div className="action-buttons">
+                <div className="action-buttons">
 
-    {/* VIEW BUTTON */}
-    <button
-      className="btn-view"
-      onClick={() => navigate(`/booking-details/${booking._id}`)}
-    >
-      View
-    </button>
+                  <button
+                    className="btn-view"
+                    onClick={() => navigate(`/booking-details/${booking._id}`)}
+                  >
+                    View
+                  </button>
 
-    {/* REJECT BUTTON */}
-    <button
-      className="btn-reject"
-      onClick={() => handleStatusUpdate(booking._id, "rejected")}
-    >
-      Reject
-    </button>
+                  <button
+                    className="btn-reject"
+                    onClick={() => handleStatusUpdate(booking._id, "rejected")}
+                  >
+                    Reject
+                  </button>
 
-    {/* DELETE BUTTON */}
-    <button
-      className="btn-delete"
-      onClick={() => handleDeleteBooking(booking._id)}
-    >
-      Delete
-    </button>
-  </div>
-</td>
+                  <button
+                    className="btn-delete"
+                    onClick={() => handleDeleteBooking(booking._id)}
+                  >
+                    Delete
+                  </button>
 
+                </div>
+              </td>
             </tr>
           ))}
         </tbody>
@@ -223,8 +236,10 @@ const handleDeleteBooking = async (bookingId) => {
           <p>No approved bookings found.</p>
         </div>
       )}
+
     </div>
-  );
+  </div>
+);
 };
 
 export default ApprovedBooking;

@@ -1224,7 +1224,7 @@
 }
 
 /* Book Button - always visible footer */
-.modern-book-action {
+/* .modern-book-action {
   padding: 16px 32px;
   border-top: 1px solid #eef2f6;
   display: flex;
@@ -1235,40 +1235,15 @@
   z-index: 10;
 }
 
-/* .modern-book-now-btn {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: #f1f5f9;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 40px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: #4f46e5;
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  font-family: inherit;
-  box-shadow: none;
-}
 
-.modern-book-now-btn:hover {
-  background: #4f46e5;
-  color: white;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px -8px rgba(79, 70, 229, 0.4);
-}
-
-.modern-book-now-btn:active {
-  transform: translateY(0px);
-} */
 .modern-book-now-btn{
   display: flex;
   align-items: center;
   gap: 8px;
   background: #f1f5f9;
   border: none;
-  padding: 10px 20px;
+  
+  padding-left: 200px;
   border-radius: 40px;
   font-size: 0.9rem;
   font-weight: 600;
@@ -1289,9 +1264,60 @@
 .modern-book-now-btn:active
 {
   transform: translateY(0px);
-}
+} */
 /* new */
+/* Modern Book Button - Centered and Styled as a Button */
+.modern-book-action {
+  padding: 24px 32px;
+  border-top: 1px solid #eef2f6;
+  display: flex;
+  justify-content: center;
+  background: #ffffff;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 10;
+}
 
+.modern-book-now-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: #f1f5f9;
+  /* background: linear-gradient(135deg, #4f46e5, #6366f1); */
+  border: none;
+  padding: 10px 24px;
+  padding-left: 180px;
+  padding-right: 170px;
+  border-radius: 60px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  /* color: white; */
+  color: #4f46e5;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  font-family: inherit;
+  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.3);
+  text-decoration: none;
+  letter-spacing: 0.3px;
+}
+
+.modern-book-now-btn:hover {
+  background: linear-gradient(135deg, #4338ca, #4f46e5);
+  color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px -5px rgba(79, 70, 229, 0.5);
+}
+
+.modern-book-now-btn:active {
+  transform: translateY(0px);
+  box-shadow: 0 2px 8px rgba(79, 70, 229, 0.3);
+}
+
+/* Ensure the Link wrapper doesn't add extra styling */
+.modern-book-action a {
+  text-decoration: none;
+}
 .modern-back-btn {
   display: flex;
   align-items: center;

@@ -75,15 +75,19 @@ const CompleteBooking = () => {
   }
 
   return (
-    <div className="total-bookings-container">
+  <div className="total-bookings-container">
+    <div className="content-wrapper">
+
       <h1>Completed Bookings</h1>
       <p>These events have already taken place:</p>
-      <button 
-            className="new-booking-btn"
-            onClick={() => navigate('/admin')}
-          >
-           Back
-          </button>
+
+      <button
+        className="new-booking-btn"
+        onClick={() => navigate('/admin')}
+      >
+        Back
+      </button>
+
       <table className="bookings-table">
         <thead>
           <tr>
@@ -95,6 +99,7 @@ const CompleteBooking = () => {
             <th>Status</th>
           </tr>
         </thead>
+
         <tbody>
           {completedEvents.map((booking) => (
             <tr key={booking._id}>
@@ -102,11 +107,15 @@ const CompleteBooking = () => {
               <td>{booking.department || booking.collegeId || "N/A"}</td>
               <td>{formatDate(booking.startDate)}</td>
               <td>{booking.preferredHall}</td>
+
               <td>
                 {formatTime(booking.startTime)} – {formatTime(booking.endTime)}
               </td>
+
               <td>
-                <span className="status-badge status-approved">Completed</span>
+                <span className="status-badge status-approved">
+                  Completed
+                </span>
               </td>
             </tr>
           ))}
@@ -114,10 +123,14 @@ const CompleteBooking = () => {
       </table>
 
       {completedEvents.length === 0 && (
-        <p>No completed events yet.</p>
+        <div className="no-bookings">
+          <p>No completed events yet.</p>
+        </div>
       )}
+
     </div>
-  );
+  </div>
+);
 };
 
 export default CompleteBooking;

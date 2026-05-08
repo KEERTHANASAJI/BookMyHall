@@ -16,7 +16,8 @@ import MyBookings from './component/MyBookings';
 import CompleteBooking from './component/CompleteBooking';
 import AdminCalendar from './component/AdminCalender';
 import Help from './Pages/Help';
-import Reports from './Pages/Reports';
+// import Reports from './Pages/Reports';
+import Reports from './component/Reports';
 import HallGallery from "./component/HallGallery";
 function App() {
   const [count, setCount] = useState(0);
@@ -41,7 +42,8 @@ function App() {
         <Route path='/pend' element={<PendingRequest />}/>
         <Route path='/can' element={<CancelledBooking />}/>
          <Route path='/comp' element={<CompleteBooking />}/>
-          <Route path='/help' element={<Help/>}/>
+          {/* <Route path='/help' element={<Help/>}/>
+          <Route path='/reports' element={<Reports/>}/> */}
           <Route path='/reports' element={<Reports/>}/>
            <Route path="/hall-gallery" element={<HallGallery />} />
       </Routes>

@@ -130,26 +130,30 @@ const handleDeleteBooking = async (bookingId) => {
   }
 };
 
-  return (
-    <div className="total-bookings-container">
+ 
+   return (
+  <div className="total-bookings-container">
+    <div className="content-wrapper">
+
       <h1>Cancelled Bookings</h1>
       <p>Here are the events that were cancelled or rejected:</p>
-      <button 
-            className="new-booking-btn"
-            onClick={() => navigate('/admin')}
-          >
-           Back
-          </button>
+
+      <button
+        className="new-booking-btn"
+        onClick={() => navigate('/admin')}
+      >
+        Back
+      </button>
+
       {/* Refresh Button */}
       <div className="refresh-section">
-        <button 
+        <button
           className="refresh-btn"
           onClick={fetchCancelledBookings}
           title="Refresh cancelled bookings"
         >
           🔄 Refresh
         </button>
-        <span className="last-updated">Showing {bookings.length} cancelled bookings</span>
       </div>
 
       <table className="bookings-table">
@@ -162,9 +166,9 @@ const handleDeleteBooking = async (bookingId) => {
             <th>Time</th>
             <th>Status</th>
             <th>Actions</th>
-
           </tr>
         </thead>
+
         <tbody>
           {bookings.map((booking) => (
             <tr key={booking._id}>
@@ -172,44 +176,43 @@ const handleDeleteBooking = async (bookingId) => {
               <td>{booking.email || booking.collegeId || 'N/A'}</td>
               <td>{formatDate(booking.startDate)}</td>
               <td>{booking.preferredHall}</td>
+
               <td>
-                {booking.bookingType === 'single' ? (
-                  `${formatTime(booking.startTime)} - ${formatTime(booking.endTime)}`
-                ) : (
-                  `Multiple Dates (${booking.tentativeDates?.length || 0})`
-                )}
+                {booking.bookingType === 'single'
+                  ? `${formatTime(booking.startTime)} - ${formatTime(booking.endTime)}`
+                  : `Multiple Dates (${booking.tentativeDates?.length || 0})`}
               </td>
+
               <td>
                 {getStatusBadge(booking.status)}
               </td>
+
               <td>
-  <div className="action-buttons">
-    {/* VIEW BUTTON */}
-    <button
-      className="btn-view"
-      onClick={() => navigate(`/booking-details/${booking._id}`)}
-    >
-      View
-    </button>
+                <div className="action-buttons">
 
-    {/* APPROVE BUTTON — only if rejected/cancelled */}
-    <button
-      className="btn-approve"
-      onClick={() => handleStatusUpdate(booking._id, "approved")}
-    >
-      Approve
-    </button>
+                  <button
+                    className="btn-view"
+                    onClick={() => navigate(`/booking-details/${booking._id}`)}
+                  >
+                    View
+                  </button>
 
-    {/* DELETE BUTTON */}
-    <button
-      className="btn-delete"
-      onClick={() => handleDeleteBooking(booking._id)}
-    >
-      Delete
-    </button>
-  </div>
-</td>
+                  <button
+                    className="btn-approve"
+                    onClick={() => handleStatusUpdate(booking._id, "approved")}
+                  >
+                    Approve
+                  </button>
 
+                  <button
+                    className="btn-delete"
+                    onClick={() => handleDeleteBooking(booking._id)}
+                  >
+                    Delete
+                  </button>
+
+                </div>
+              </td>
             </tr>
           ))}
         </tbody>
@@ -220,8 +223,10 @@ const handleDeleteBooking = async (bookingId) => {
           <p>No cancelled bookings found.</p>
         </div>
       )}
+
     </div>
-  );
+  </div>
+);
 };
 
 export default CancelledBooking;

@@ -141,14 +141,15 @@ const HallBookingForm = () => {
       [name]: value
     }));
   };
-const hallCapacityRules = {
-  "Auditorium": { min: 400, max: 1000 },
-  "Euphresia Conference Hall": { min: 10, max: 20 },
-  "Christ Conference Hall": { min: 20, max: 30 },
-  "Silver Jubilee Seminar Hall": { min: 80, max: 130 },
-  "Lissieux Seminar Hall": { min: 100, max: 150 },
-  "Marian Hall": { min: 200, max: 350 }
-};
+
+  const hallCapacityRules = {
+    "Auditorium": { min: 400, max: 1000 },
+    "Euphresia Conference Hall": { min: 10, max: 20 },
+    "Christ Conference Hall": { min: 20, max: 30 },
+    "Silver Jubilee Seminar Hall": { min: 80, max: 130 },
+    "Lissieux Seminar Hall": { min: 100, max: 150 },
+    "Marian Hall": { min: 200, max: 350 }
+  };
 
   const addTentativeDate = () => {
     if (currentTentativeDate.date && currentTentativeDate.startTime && currentTentativeDate.endTime) {
@@ -206,20 +207,22 @@ const hallCapacityRules = {
       showMessage('Invalid Email', 'Please enter a valid email address.', 'error');
       return;
     }
-const hallRule = hallCapacityRules[formData.preferredHall];
 
-if (hallRule) {
-  const attendees = Number(formData.attendees);
+    const hallRule = hallCapacityRules[formData.preferredHall];
 
-  if (attendees < hallRule.min || attendees > hallRule.max) {
-    showMessage(
-      'Invalid Attendee Count',
-      `For ${formData.preferredHall}, attendees must be between ${hallRule.min} and ${hallRule.max}.`,
-      'warning'
-    );
-    return;
-  }
-}
+    if (hallRule) {
+      const attendees = Number(formData.attendees);
+
+      if (attendees < hallRule.min || attendees > hallRule.max) {
+        showMessage(
+          'Invalid Attendee Count',
+          `For ${formData.preferredHall}, attendees must be between ${hallRule.min} and ${hallRule.max}.`,
+          'warning'
+        );
+        return;
+      }
+    }
+
     try {
       // Check hall availability BEFORE submission
       if (formData.bookingType === 'single') {
@@ -311,6 +314,10 @@ if (hallRule) {
     });
   };
 
+  const handleGoBack = () => {
+    navigate(-1); // Go back to previous page
+  };
+
   // Modal Component
   const Modal = () => {
     if (!showModal) return null;
@@ -370,7 +377,11 @@ if (hallRule) {
     <div className="booking-container">
       <Modal />
       
+      {/* Back Button Header */}
       <div className="booking-header">
+        <button className="back-to-calendar-btn" onClick={handleGoBack}>
+          ← Back to Calendar
+        </button>
         <h1>Book {hallData?.name || 'College Hall'}</h1>
         <p>Fill out the form below to request a hall booking</p>
         {user && (
@@ -430,11 +441,11 @@ if (hallRule) {
             </div>
             
             <button
-        className="view-photos-btn"
-        onClick={() => navigate("/hall-gallery")}
-      >
-        View Photos & Layout
-      </button>
+              className="view-photos-btn"
+              onClick={() => navigate("/hall-gallery")}
+            >
+              View Photos & Layout
+            </button>
           </div>
         </div>
 
@@ -457,7 +468,6 @@ if (hallRule) {
                     onChange={handleInputChange}
                   />
                   <span className="radio-custom"></span>
-                  {/* Single Date Booking */}
                   Confirmed Booking
                 </label>
                 <label className="radio-label">
@@ -469,7 +479,6 @@ if (hallRule) {
                     onChange={handleInputChange}
                   />
                   <span className="radio-custom"></span>
-                  {/* Multiple Dates (Tentative - Confirm Later) */}
                   Tentative Booking 
                 </label>
               </div>
@@ -589,7 +598,7 @@ if (hallRule) {
               <div className="multiple-dates-section">
                 <h4>Tentative Dates</h4>
                 <p className="section-description">
-                  Add  dates you're considering. You'll need to confirm your final choice at least 3 days before the event.
+                  Add dates you're considering. You'll need to confirm your final choice at least 3 days before the event.
                 </p>
                 
                 <div className="add-date-form">
@@ -732,13 +741,14 @@ if (hallRule) {
                   value={formData.attendees}
                   onChange={handleInputChange}
                   min="1"
-                  required/>
+                  required
+                />
                 
-                 {hallCapacityRules[formData.preferredHall] && (
-    <small className="capacity-hint">
-      Allowed range: {hallCapacityRules[formData.preferredHall].min} – {hallCapacityRules[formData.preferredHall].max}
-    </small> )}
- 
+                {hallCapacityRules[formData.preferredHall] && (
+                  <small className="capacity-hint">
+                    Allowed range: {hallCapacityRules[formData.preferredHall].min} – {hallCapacityRules[formData.preferredHall].max}
+                  </small>
+                )}
               </div>
             </div>
           </section>
@@ -815,9 +825,8 @@ if (hallRule) {
                 rows="4"
                 placeholder="Any other requirements or special requests..."
               />
-              For additional services contact<br></br>
-              Technician : +123-456-7890 
-
+              For additional services contact<br />
+              Technician: +123-456-7890
             </div>
           </section>
 

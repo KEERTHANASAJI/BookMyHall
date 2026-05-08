@@ -1,130 +1,232 @@
-/* SIDEBAR CONTAINER*/
+/* SIDEBAR CONTAINER */
 .sidebar {
   position: fixed;
   top: 0;
-  left: -260px;            /* hidden initially */
+  left: -260px;
   width: 260px;
   height: 100vh;
-  background: #000000;
-  color: #ffffff;
-  padding: 20px;
-  box-shadow: 2px 0 10px rgba(0,0,0,0.3);
+  background: linear-gradient(180deg, #0f0f0f 0%, #1a1a1a 100%);
+  color: #fff;
+  padding: 24px 20px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;  /* top menu + bottom footer */
-  transition: left 0.3s ease;
+  transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 2000;
+  box-shadow: 2px 0 20px rgba(0, 0, 0, 0.4);
 }
 
-/* Slide-in effect */
 .sidebar.open {
   left: 0;
 }
 
-/*  CLOSE BUTTON*/
-.close-btn {
-  position: absolute;
-  top: 12px;
-  right: 15px;
-  background: none;
-  border: none;
-  font-size: 28px;
-  color: white;
-  cursor: pointer;
-  padding: 5px;
+/* HEADER SECTION */
+/* .sidebar-header {
+  margin-bottom: 32px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+} */
+
+/* .sidebar-header h2 {
+  font-size: 25px;
+  font-weight: 700;
+  margin: 0 0 4px 0;
+  background: linear-gradient(135deg, #fff, #ff6b4a);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
-/*  MAIN MENU*/
+.sidebar-header p {
+  font-size: 12px;
+  opacity: 0.6;
+  margin: 0;
+  letter-spacing: 1px;
+   padding-bottom: 20px;
+} */
+/* HEADER SECTION WITH SYMBOL */
+/* .sidebar-header {
+  margin-bottom: 32px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sidebar-header::before {
+  content: "🔹";
+  font-size: 38px;
+  background: linear-gradient(135deg, #fff, #3c3fe4);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.sidebar-header .header-text {
+  flex: 1;
+}
+
+.sidebar-header h2 {
+  font-size: 25px;
+  font-weight: 700;
+  margin: 0 0 4px 0;
+  background: linear-gradient(135deg, #fff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.sidebar-header p {
+  font-size: 12px;
+  opacity: 0.6;
+  margin: 0;
+  letter-spacing: 1px;
+  padding-bottom: 0;
+} */
+ /* HEADER SECTION WITH DIAMOND INSIDE DIAMOND */
+.sidebar-header {
+  margin-bottom: 32px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+}
+
+.sidebar-header .diamond-icon {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Outer diamond */
+.sidebar-header .diamond-icon::before {
+  content: "◆";
+  position: absolute;
+  font-size: 52px;
+  color:  #5f62f3;
+}
+
+/* Inner diamond */
+.sidebar-header .diamond-icon::after {
+  content: "⬩";
+ position: absolute;
+  font-size: 45px;
+  color: #fff;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.sidebar-header .header-text {
+  flex: 1;
+}
+
+.sidebar-header h2 {
+  font-size: 25px;
+  font-weight: 700;
+  margin: 0 0 4px 0;
+  
+  background: linear-gradient(135deg, #fff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* .sidebar-header p {
+  font-size: 12px;
+  opacity: 0.6;
+  margin: 0;
+  letter-spacing: 1px;
+  padding-bottom: 0;
+} */
+/* CLOSE BUTTON */
+.close-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  /* background: rgba(48, 46, 46, 0.08); */
+  background: #585857;
+  border: none;
+  font-size: 20px;
+  color: white;
+  cursor: pointer;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.close-btn:hover {
+  background: #ff4b2b;
+}
+
+/* MAIN MENU */
 .sidebar-menu {
   list-style: none;
-  padding: 70px 0 0 0; /* pushes menu down */
+  padding: 0;
   margin: 0;
+  flex: 1;
 }
 
 .sidebar-menu li {
-  padding: 14px 0;
-  font-size: 17px;
+  padding: 12px 0;
+  padding-bottom: 20px;
+  font-size: 16px;
+  font-weight: 500;
   cursor: pointer;
-  transition: 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: all 0.2s;
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .sidebar-menu li:hover {
-  color: #4aa3ff;
+  color: #ff6b4a;
   padding-left: 5px;
 }
 
-/* BOTTOM SECTION*/
-.side-bottom {
-  padding-top: 20px;
-  border-top: 1px solid rgb(255, 255, 255);
-}
+/* Menu icons */
+.sidebar-menu li:nth-child(1)::before { content: "🏠"; font-size: 1.2rem; width: 28px; }
+.sidebar-menu li:nth-child(2)::before { content: "📊"; font-size: 1.2rem; width: 28px; }
 
-/* Theme toggle button */
-.theme-toggle {
-  width: 100%;
-  padding: 10px 12px;
-  background: #333;
-  border: none;
-  border-radius: 8px;
-  color: white;
-  cursor: pointer;
-  margin-bottom: 20px;
-  font-size: 15px;
-  transition: background 0.2s ease;
-}
-
-.theme-toggle:hover {
-  background: #444;
-}
-
-/*  ADMIN CONTACT*/
-.admin-contact {
-  font-size: 14px;
-  opacity: 0.85;
-}
-
-.admin-name {
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-
-.admin-email {
-  color: #4aa3ff;
-  text-decoration: none;
-}
-
-.admin-email:hover {
-  text-decoration: underline;
-}
+/* NOTIFICATION - preserved */
 .notification-item {
-  position: relative; /* Add this */
+  position: relative;
   display: flex;
   align-items: center;
   cursor: pointer;
-  padding: 10px;
+  padding: 10px 0;
   border-radius: 8px;
   transition: background-color 0.3s;
 }
 
 .notification-item:hover {
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: transparent;
 }
 
 .notification-item span {
   margin-left: 10px;
 }
 
-/* Notification count badge - position it near the text */
 .notif-count {
-  position: absolute; /* Change from relative to absolute */
-  top: 5px; /* Adjust vertical position */
-  right: 10px; /* Position near the right side */
+  position: absolute;
+  top: 5px;
+  right: 10px;
   background: linear-gradient(135deg, #ff416c, #ff4b2b);
   color: white;
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   font-weight: bold;
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -132,29 +234,45 @@
   animation: pulse 1.5s infinite;
 }
 
-/* Alternatively, position it inline with the text */
-.notification-item .notif-count-inline {
-  background: linear-gradient(135deg, #ff416c, #ff4b2b);
-  color: white;
-  font-size: 0.7rem;
-  font-weight: bold;
-  padding: 2px 8px;
-  border-radius: 10px;
-  margin-left: 10px;
-  animation: pulse 1.5s infinite;
+@keyframes pulse {
+  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 65, 108, 0.7); }
+  70% { transform: scale(1.05); box-shadow: 0 0 0 6px rgba(255, 65, 108, 0); }
+  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 65, 108, 0); }
 }
 
-@keyframes pulse {
-  0% {
-    transform: scale(1);
-    box-shadow: 0 0 0 0 rgba(255, 65, 108, 0.7);
-  }
-  70% {
-    transform: scale(1.05);
-    box-shadow: 0 0 0 6px rgba(255, 65, 108, 0);
-  }
-  100% {
-    transform: scale(1);
-    box-shadow: 0 0 0 0 rgba(255, 65, 108, 0);
-  }
+/* LOGOUT SECTION - line above + at bottom */
+.logout-wrapper {
+  margin-top: auto;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  padding-top: 16px;
+}
+
+.logout-item {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.logout-item li {
+  padding: 12px 0;
+ padding-bottom: 40px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: all 0.2s;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.logout-item li::before {
+  /* content: "↪"; */
+  font-size: 1.2rem;
+  width: 28px;
+}
+
+.logout-item li:hover {
+  color: #ff4b2b;
+  padding-left: 5px;
 }

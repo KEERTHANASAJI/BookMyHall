@@ -38,7 +38,15 @@ const CompleteBooking = () => {
         return eventDate < today; // event took place
       });
 
-      setCompletedEvents(completed);
+      // Sort by event completed time
+const sortedCompleted = completed.sort((a, b) => {
+  const endDateTimeA = new Date(`${a.startDate}T${a.endTime}`);
+  const endDateTimeB = new Date(`${b.startDate}T${b.endTime}`);
+
+  return endDateTimeB - endDateTimeA;
+});
+
+setCompletedEvents(sortedCompleted);
 
     } catch (err) {
       setError(err.message);

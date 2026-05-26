@@ -291,7 +291,11 @@ const TotalBooking = () => {
                  </td>
                </tr>
             ) : (
-              filteredBookings.map((booking) => (
+               [...filteredBookings]
+      .sort((a, b) => {
+        return new Date(b.createdAt) - new Date(a.createdAt);
+      })
+      .map((booking) => (
                 <tr key={booking._id}>
                   <td>{booking.eventName}</td>
                   <td>{booking.department || booking.collegeId || 'N/A'}</td>

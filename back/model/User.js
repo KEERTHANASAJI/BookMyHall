@@ -18,7 +18,26 @@ const userSchema = new mongoose.Schema({
         type: String,
         enum: ['user', 'admin'],
         default: 'user'
-    }
+    },
+    securityQuestion1: {
+    type: String,
+    required: true
+  },
+
+  securityAnswer1: {
+    type: String,
+    required: true
+  },
+
+  securityQuestion2: {
+    type: String,
+    required: true
+  },
+
+  securityAnswer2: {
+    type: String,
+    required: true
+  }
 }, {
     timestamps: true
 });

@@ -33,8 +33,8 @@ function App() {
          <Route path="/hall/:id" element={<HallDetails />} />
         <Route path='/h' element={<Calender/>}/>
         <Route path='/f' element={<HallBookingForm/>}/>
-        <Route path='/signup' element={<Signup/>}/>
-        <Route path='/' element={<Login/>}/>
+        <Route path='/' element={<Signup/>}/>
+        {/* <Route path='/' element={<Login/>}/> */}
         <Route path="/all-bookings" element={<AllBookings />} />
          <Route path='/admin' element={<AdminCalendar/>}/>
         <Route path='/tot' element={<TotalBooking />}/>

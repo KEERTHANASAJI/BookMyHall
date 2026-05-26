@@ -159,25 +159,46 @@ const AdminCalendar = () => {
     const getBookingsForDateAndHall = (date, hallName) => {
         if (!bookings || bookings.length === 0) return [];
 
-        const targetDate = date.toDateString();
+         const targetDate = new Date(date);
+    targetDate.setHours(0, 0, 0, 0);
 
         return bookings.filter(booking => {
-            // For single booking type
-            if (booking.bookingType === 'single' && booking.startDate) {
-                const bookingDate = new Date(booking.startDate).toDateString();
-                const matchesHall = booking.preferredHall === hallName;
-                const matchesDate = bookingDate === targetDate;
+            // SINGLE / CONTINUOUS DATE BOOKINGS
+        if (booking.bookingType === "single" && booking.startDate) {
 
-                return matchesHall && matchesDate &&
-                    (booking.status === 'approved' || booking.status === 'pending' || booking.status === 'tentative');
-            }
+            const startDate = new Date(booking.startDate);
+            startDate.setHours(0, 0, 0, 0);
 
+            // If endDate exists use it, otherwise use startDate
+            const endDate = booking.endDate
+                ? new Date(booking.endDate)
+                : new Date(booking.startDate);
+
+            endDate.setHours(0, 0, 0, 0);
+            const matchesHall = booking.preferredHall === hallName;
+                // Check if clicked date lies between start and end
+            const matchesDate =
+                targetDate >= startDate &&
+                targetDate <= endDate;
+
+            return (
+                matchesHall &&
+                matchesDate &&
+                (
+                    booking.status === "approved" ||
+                    booking.status === "pending" ||
+                    booking.status === "tentative"
+                )
+            );
+        }
             // For multiple/tentative booking type
             if (booking.bookingType === 'multiple' && booking.tentativeDates) {
                 // Check if any tentative date matches the target date
                 const hasMatchingTentativeDate = booking.tentativeDates.some(tentativeDate => {
-                    const tentativeDateStr = new Date(tentativeDate.date).toDateString();
-                    return tentativeDateStr === targetDate;
+                    const tentative = new Date(tentativeDate.date);
+                    tentative.setHours(0, 0, 0, 0);
+
+                    return tentative.getTime() === targetDate.getTime();
                 });
 
                 const matchesHall = booking.preferredHall === hallName;

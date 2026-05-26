@@ -201,7 +201,8 @@ app.post("/login", async (req, res) => {
 // Signup route
 app.post("/signup", async (req, res) => {
   try {
-    const { username, password } = req.body;
+   const {username,password,securityQuestion1,securityAnswer1,securityQuestion2,securityAnswer2
+} = req.body;
 
     const existingUser = await User.findOne({ username: username });
     if (existingUser) {
@@ -212,7 +213,11 @@ app.post("/signup", async (req, res) => {
       username: username,
       password: password,
       name: username,
-      userType: "user"
+      userType: "user",
+      securityQuestion1,
+  securityAnswer1,
+  securityQuestion2,
+  securityAnswer2
     });
 
     await newUser.save();
@@ -1572,10 +1577,11 @@ app.patch("/bookings/:id/status", async (req, res) => {
     // Create notification
     const notificationMessage =
       status === "approved"
-        ? "Your hall booking has been approved 🎉"
-        : status === "rejected"
-        ? "Your hall booking has been rejected ❌"
-        : null;
+          ? `Your booking for "${booking.eventName}" has been approved 🎉`
+          : status === "rejected"
+          ? `Your booking for "${booking.eventName}" has been rejected ❌`
+          : null;
+
 
     if (notificationMessage) {
       console.log("Creating notification...");
@@ -1820,7 +1826,57 @@ app.patch("/admin/notifications/mark-read", async (req, res) => {
     res.status(500).json({ error: "Failed to mark admin notifications as read" });
   }
 });
+app.post('/forgot-password', async (req, res) => {
 
+  try {
+
+    const {
+      username,
+      securityQuestion1,
+      securityAnswer1,
+      securityQuestion2,
+      securityAnswer2,
+      newPassword
+    } = req.body;
+
+    const user = await User.findOne({ username });
+
+    if (!user) {
+      return res.status(404).json({
+        message: 'User not found'
+      });
+    }
+
+    // CHECK SECURITY QUESTIONS + ANSWERS
+    if (
+      user.securityQuestion1 !== securityQuestion1 ||
+      user.securityAnswer1 !== securityAnswer1 ||
+      user.securityQuestion2 !== securityQuestion2 ||
+      user.securityAnswer2 !== securityAnswer2
+    ) {
+      return res.status(400).json({
+        message: 'Security answers are incorrect'
+      });
+    }
+
+    // UPDATE PASSWORD
+    user.password = newPassword;
+
+    await user.save();
+
+    res.json({
+      message: 'Password updated successfully'
+    });
+
+  } catch (err) {
+
+    console.log(err);
+
+    res.status(500).json({
+      message: 'Server error'
+    });
+  }
+});
 // Hall availability
 app.get('/availability', async (req, res) => {
   try {

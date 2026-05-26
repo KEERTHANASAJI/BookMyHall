@@ -160,258 +160,266 @@ const BookingDetails = () => {
     </Box>
   );
 
-  return (
-    <Fade in={true} timeout={800}>
-      <div className="bd-page">
-        {/* Header */}
-        <Slide in={true} direction="down" timeout={500}>
-          <Box className="bd-header">
-            <Button
-              className="bd-back ripple"
-              startIcon={<ArrowBack />}
-              onClick={() => navigate(-1)}
-              sx={{
-                textTransform: 'none',
-                borderRadius: 2
-              }}
-            >
-              Back
-            </Button>
-            
-            <Box className="bd-title" sx={{ flex: 1 }}>
-              <Typography variant="h4" component="h1" gutterBottom>
-                {booking.eventName || "Untitled Event"}
-              </Typography>
-              
-              <Box className="bd-meta" sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                <Chip
-                  icon={getStatusIcon(booking.status)}
-                  label={booking.status || "pending"}
-                  color={getStatusColor(booking.status)}
-                  variant="filled"
-                  className={`bd-badge bd-status bd-${booking.status || "pending"}`}
-                />
-                
-                <Chip
-                  label={`Ref: ${booking.bookingReference || "—"}`}
-                  variant="outlined"
-                  size="small"
-                  className="bd-ref"
-                />
-                
-                <Typography variant="body2" color="textSecondary" className="bd-submitted">
-                  Submitted: {formatDateTime(booking.submittedAt || booking.createdAt)}
-                </Typography>
-              </Box>
-            </Box>
+ 
+    return (
+  <Fade in={true} timeout={600}>
+    <div className="bd-page">
 
-            
-          </Box>
-        </Slide>
+      {/* HEADER */}
+      <div className="top-banner">
 
-        {/* Main Content Grid */}
-        <Grid container spacing={3} className="bd-grid">
-          {/* Left Column - Event & Booking */}
-          <Grid item xs={12} md={6}>
-            <Slide in={true} direction="right" timeout={600}>
-              <Card className="bd-card" elevation={2}>
-                <CardContent>
-                  <Typography variant="h6" gutterBottom sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                    <Event color="primary" />
-                    Event & Booking
-                  </Typography>
+        <div className="banner-left">
+          <Button
+            className="bd-back"
+            startIcon={<ArrowBack />}
+            onClick={() => navigate(-1)}
+          >
+            Back
+          </Button>
 
-                  <Box className="bd-row">
-                    <Typography variant="subtitle2" className="bd-row-label">Event Type</Typography>
-                    <Typography variant="body2">{booking.eventType || "—"}</Typography>
-                  </Box>
+          <div>
+            <Typography variant="h4" className="main-heading">
+              {booking.eventName || "Untitled Event"}
+            </Typography>
 
-                  <Box className="bd-row">
-                    <Typography variant="subtitle2">Booking Type</Typography>
-                    <Typography variant="body2">{booking.bookingType || "—"}</Typography>
-                  </Box>
+            <div className="header-chips">
 
-                  <Box className="bd-row">
-                    <Typography variant="subtitle2">Preferred Hall</Typography>
-                    <Typography variant="body2">{booking.preferredHall || "—"}</Typography>
-                  </Box>
+              <Chip
+                icon={getStatusIcon(booking.status)}
+                label={booking.status || "pending"}
+                color={getStatusColor(booking.status)}
+              />
 
-                  <Box className="bd-row">
-                    <Typography variant="subtitle2">Backup Hall</Typography>
-                    <Typography variant="body2" color="textSecondary">
-                      {booking.backupHall || "None"}
-                    </Typography>
-                  </Box>
+              <Chip
+                label={`Ref : ${booking.bookingReference || "---"}`}
+                variant="outlined"
+              />
 
-                  <Divider sx={{ my: 2 }} />
+            </div>
+          </div>
+        </div>
 
-                  {booking.bookingType === "single" && (
-                    <>
-                      <Typography variant="subtitle1" className="section-sub">
-                        Single Date
-                      </Typography>
-                      <Box className="bd-row">
-                        <Typography variant="subtitle2">Start Date</Typography>
-                        <Typography variant="body2">{formatDate(booking.startDate)}</Typography>
-                      </Box>
-                      <Box className="bd-row">
-                        <Typography variant="subtitle2">End Date</Typography>
-                        <Typography variant="body2">{formatDate(booking.endDate || booking.startDate)}</Typography>
-                      </Box>
-                      <Box className="bd-row">
-                        <Typography variant="subtitle2">Start Time</Typography>
-                        <Typography variant="body2">{booking.startTime || "—"}</Typography>
-                      </Box>
-                      <Box className="bd-row">
-                        <Typography variant="subtitle2">End Time</Typography>
-                        <Typography variant="body2">{booking.endTime || "—"}</Typography>
-                      </Box>
-                    </>
-                  )}
+        <div className="banner-right">
+          <Typography>
+            Submitted : {formatDateTime(booking.createdAt)}
+          </Typography>
+        </div>
 
-                  {booking.bookingType === "multiple" && (
-                    <>
-                      <Typography variant="subtitle1" className="section-sub">
-                        Tentative Dates
-                      </Typography>
-                      {booking.tentativeDates && booking.tentativeDates.length ? (
-                        <Box component="ul" className="tentative-list">
-                          {booking.tentativeDates.map((td, i) => (
-                            <Box component="li" key={td.id ?? i}>
-                              <Typography variant="body2" fontWeight="bold" className="td-date">
-                                {formatDate(td.date)}
-                              </Typography>
-                              <Typography variant="body2" color="textSecondary" className="td-time">
-                                {td.startTime || "—"} — {td.endTime || "—"}
-                              </Typography>
-                            </Box>
-                          ))}
-                        </Box>
-                      ) : (
-                        <Typography variant="body2" color="textSecondary" fontStyle="italic">
-                          No tentative dates
-                        </Typography>
-                      )}
-                    </>
-                  )}
-
-                  <Divider sx={{ my: 2 }} />
-
-                  <Typography variant="subtitle1" className="section-sub">
-                    Attendees & Setup
-                  </Typography>
-                  <Box className="bd-row">
-                    <Typography variant="subtitle2">Attendees</Typography>
-                    <Typography variant="body2">{booking.attendees || "—"}</Typography>
-                  </Box>
-                  <Box className="bd-row">
-                    <Typography variant="subtitle2">Requires Setup/Cleanup</Typography>
-                    <Typography variant="body2">{booking.needsSetupTime ? "Yes" : "No"}</Typography>
-                  </Box>
-                </CardContent>
-              </Card>
-            </Slide>
-          </Grid>
-
-          {/* Right Column - Requester & Requirements */}
-          <Grid item xs={12} md={6}>
-            <Slide in={true} direction="left" timeout={600}>
-              <Card className="bd-card" elevation={2}>
-                <CardContent>
-                  <Typography variant="h6" gutterBottom sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                    <Person color="primary" />
-                    Requester
-                  </Typography>
-
-                  <Box className="bd-row">
-                    <Typography variant="subtitle2">Full Name</Typography>
-                    <Typography variant="body2">{booking.fullName || booking.name || "—"}</Typography>
-                  </Box>
-
-                  <Box className="bd-row">
-                    <Typography variant="subtitle2">Department/Club</Typography>
-                    <Typography variant="body2">{booking.department || "—"}</Typography>
-                  </Box>
-
-                  <Box className="bd-row">
-                    <Typography variant="subtitle2">Email</Typography>
-                    <Typography variant="body2">{booking.email || "—"}</Typography>
-                  </Box>
-
-                  <Box className="bd-row">
-                    <Typography variant="subtitle2">Phone</Typography>
-                    <Typography variant="body2">{booking.phone || "—"}</Typography>
-                  </Box>
-
-                  <Divider sx={{ my: 2 }} />
-
-                  <Typography variant="h6" gutterBottom sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                    <Settings color="primary" />
-                    Requirements
-                  </Typography>
-
-                  <Box className="bd-row">
-                    <Typography variant="subtitle2">AV Equipment</Typography>
-                    <Box>{showArray(booking.avEquipment)}</Box>
-                  </Box>
-
-                  <Box className="bd-row">
-                    <Typography variant="subtitle2">Furniture</Typography>
-                    <Box>{showArray(booking.furniture)}</Box>
-                  </Box>
-
-                  <Box className="bd-row">
-                    <Typography variant="subtitle2">Internet</Typography>
-                    <Typography variant="body2">{booking.needsInternet ? "Yes" : "No"}</Typography>
-                  </Box>
-
-                  <Box className="bd-row">
-                    <Typography variant="subtitle2">Security</Typography>
-                    <Typography variant="body2">{booking.needsSecurity ? "Yes" : "No"}</Typography>
-                  </Box>
-
-                  <Divider sx={{ my: 2 }} />
-
-                  <Typography variant="subtitle1" className="section-sub">
-                    Notes
-                  </Typography>
-
-                  <Box className="bd-block">
-                    <Typography variant="subtitle2" gutterBottom>
-                      Description
-                    </Typography>
-                    <Paper variant="outlined" className="bd-text" sx={{ p: 2, bgcolor: 'background.default' }}>
-                      <Typography variant="body2">
-                        {booking.description || "No description provided"}
-                      </Typography>
-                    </Paper>
-
-                    <Typography variant="subtitle2" gutterBottom sx={{ mt: 2 }}>
-                      Additional Notes
-                    </Typography>
-                    <Paper variant="outlined" className="bd-text" sx={{ p: 2, bgcolor: 'background.default' }}>
-                      <Typography variant="body2">
-                        {booking.additionalNotes || booking.adminNotes || "None"}
-                      </Typography>
-                    </Paper>
-                  </Box>
-                </CardContent>
-              </Card>
-            </Slide>
-          </Grid>
-        </Grid>
-
-        {/* Footer */}
-        <Fade in={true} timeout={1000}>
-          <Paper className="bd-footer" elevation={1}>
-            <Typography variant="caption">Record ID: {booking._id}</Typography>
-            <Typography variant="caption">Created: {formatDateTime(booking.createdAt)}</Typography>
-            <Typography variant="caption">Updated: {formatDateTime(booking.updatedAt)}</Typography>
-          </Paper>
-        </Fade>
       </div>
-    </Fade>
-  );
+
+      {/* MAIN LAYOUT */}
+      <div className="details-layout">
+
+        {/* LEFT PANEL */}
+        <div className="left-panel">
+
+          {/* EVENT INFO */}
+          <Card className="info-card">
+            <CardContent>
+
+              <Typography className="card-title">
+                Event Information
+              </Typography>
+
+              <div className="info-grid">
+
+                <div>
+                  <span>Event Type</span>
+                  <p>{booking.eventType || "---"}</p>
+                </div>
+
+                <div>
+                  <span>Booking Type</span>
+                  <p>{booking.bookingType || "---"}</p>
+                </div>
+
+                <div>
+                  <span>Preferred Hall</span>
+                  <p>{booking.preferredHall || "---"}</p>
+                </div>
+
+                <div>
+                  <span>Backup Hall</span>
+                  <p>{booking.backupHall || "None"}</p>
+                </div>
+
+              </div>
+
+            </CardContent>
+          </Card>
+
+          {/* SCHEDULE */}
+          <Card className="info-card">
+            <CardContent>
+
+              <Typography className="card-title">
+                Schedule
+              </Typography>
+
+              {booking.bookingType === "single" && (
+
+                <div className="schedule-box">
+
+                  <div>
+                    <span>Start Date</span>
+                    <p>{formatDate(booking.startDate)}</p>
+                  </div>
+
+                  <div>
+                    <span>End Date</span>
+                    <p>{formatDate(booking.endDate)}</p>
+                  </div>
+
+                  <div>
+                    <span>Start Time</span>
+                    <p>{booking.startTime || "---"}</p>
+                  </div>
+
+                  <div>
+                    <span>End Time</span>
+                    <p>{booking.endTime || "---"}</p>
+                  </div>
+
+                </div>
+              )}
+
+              {booking.bookingType === "multiple" && (
+
+                <div className="tentative-wrapper">
+
+                  {booking.tentativeDates?.map((td, i) => (
+
+                    <div className="tentative-card" key={i}>
+                      <h4>{formatDate(td.date)}</h4>
+
+                      <p>
+                        {td.startTime || "---"} - {td.endTime || "---"}
+                      </p>
+                    </div>
+
+                  ))}
+
+                </div>
+              )}
+
+            </CardContent>
+          </Card>
+
+        </div>
+
+        {/* RIGHT PANEL */}
+        <div className="right-panel">
+
+          {/* REQUESTER */}
+          <Card className="info-card">
+            <CardContent>
+
+              <Typography className="card-title">
+                Requester Details
+              </Typography>
+
+              <div className="vertical-details">
+
+                <div>
+                  <span>Name</span>
+                  <p>{booking.fullName || "---"}</p>
+                </div>
+
+                <div>
+                  <span>Department</span>
+                  <p>{booking.department || "---"}</p>
+                </div>
+
+                <div>
+                  <span>Email</span>
+                  <p>{booking.email || "---"}</p>
+                </div>
+
+                <div>
+                  <span>Phone</span>
+                  <p>{booking.phone || "---"}</p>
+                </div>
+
+              </div>
+
+            </CardContent>
+          </Card>
+
+          {/* REQUIREMENTS */}
+          <Card className="info-card">
+            <CardContent>
+
+              <Typography className="card-title">
+                Requirements
+              </Typography>
+
+              <div className="requirements-box">
+
+                <div>
+                  <span>AV Equipment</span>
+
+                  <div className="chip-wrap">
+                    {showArray(booking.avEquipment)}
+                  </div>
+                </div>
+
+                <div>
+                  <span>Furniture</span>
+
+                  <div className="chip-wrap">
+                    {showArray(booking.furniture)}
+                  </div>
+                </div>
+
+                <div>
+                  <span>Internet</span>
+                  <p>{booking.needsInternet ? "Yes" : "No"}</p>
+                </div>
+
+                <div>
+                  <span>Security</span>
+                  <p>{booking.needsSecurity ? "Yes" : "No"}</p>
+                </div>
+
+              </div>
+
+            </CardContent>
+          </Card>
+
+          {/* NOTES */}
+          <Card className="info-card notes-card">
+            <CardContent>
+
+              <Typography className="card-title">
+                Notes
+              </Typography>
+
+              <div className="notes-box">
+                <h4>Description</h4>
+
+                <p>
+                  {booking.description || "No description provided"}
+                </p>
+              </div>
+
+              <div className="notes-box">
+                <h4>Additional Notes</h4>
+
+                <p>
+                  {booking.additionalNotes || "None"}
+                </p>
+              </div>
+
+            </CardContent>
+          </Card>
+
+        </div>
+
+      </div>
+
+    </div>
+  </Fade>
+);
 };
 
 export default BookingDetails;

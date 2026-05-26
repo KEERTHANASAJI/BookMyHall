@@ -170,12 +170,14 @@ const handleDeleteBooking = async (bookingId) => {
         </thead>
 
         <tbody>
-          {bookings.map((booking) => (
-            <tr key={booking._id}>
-              <td>{booking.eventName}</td>
-              <td>{booking.email || booking.collegeId || 'N/A'}</td>
-              <td>{formatDate(booking.startDate)}</td>
-              <td>{booking.preferredHall}</td>
+          {bookings
+            .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+            .map((booking) => (
+              <tr key={booking._id}>
+                <td>{booking.eventName}</td>
+                <td>{booking.email || booking.collegeId || 'N/A'}</td>
+                <td>{formatDate(booking.startDate)}</td>
+                <td>{booking.preferredHall}</td>
 
               <td>
                 {booking.bookingType === 'single'

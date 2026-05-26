@@ -458,17 +458,17 @@
   flex-shrink: 0;
 }
 
-.booking-preview {
+.bbooking-preview {
   margin-top: 8px;
 }
 
-.booking-preview-item {
+.bbooking-preview-item {
   font-size: 0.8rem;
   color: #666;
   margin: 2px 0;
 }
 
-.booking-preview-more {
+.bbooking-preview-more {
   font-size: 0.8rem;
   color: #999;
   font-style: italic;
@@ -804,20 +804,20 @@
 
 
 
-.modern-modal-container {
+.mmodern-modal-container {
   display: flex;
   flex-direction: column;
   height: 100%;
 }
 
-.modal-content .modern-modal-overlay {
+.modal-content .mmodern-modal-overlay {
   position: relative;
   background: transparent;
   backdrop-filter: none;
   padding: 0;
 }
 
-.modal-content .modern-modal-container {
+.modal-content .mmodern-modal-container {
   background: #ffffff;
   border-radius: 32px;
   width: 100%;
@@ -837,7 +837,7 @@
 }
 
 /* Modern Modal Header */
-.modern-modal-header {
+.mmodern-modal-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -847,7 +847,7 @@
   flex-shrink: 0;
 }
 
-/* .modern-back-btn {
+/* .mmodern-back-btn {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -863,19 +863,19 @@
   font-family: inherit;
 }
 
-.modern-back-btn:hover {
+.mmodern-back-btn:hover {
   background: #4f46e5;
   color: white;
   transform: translateX(-4px);
   box-shadow: 0 8px 20px -8px rgba(79, 70, 229, 0.4);
 } */
 
-.modern-modal-title-section {
+.mmodern-modal-title-section {
   text-align: center;
   flex: 1;
 }
 
-.modern-modal-title-section h3 {
+.mmodern-modal-title-section h3 {
   font-size: 1.75rem;
   font-weight: 700;
   background: linear-gradient(135deg, #0f172a, #1e293b);
@@ -886,7 +886,7 @@
   letter-spacing: -0.02em;
 }
 
-.modern-modal-date {
+.mmodern-modal-date {
   font-size: 0.875rem;
   color: #64748b;
   margin-top: 6px;
@@ -896,7 +896,7 @@
   gap: 8px;
 }
 
-.modern-close-btn {
+.mmodern-close-btn {
   background: #f1f5f9;
   border: none;
   width: 40px;
@@ -911,14 +911,14 @@
   justify-content: center;
 }
 
-.modern-close-btn:hover {
+.mmodern-close-btn:hover {
   background: #ef4444;
   color: white;
   transform: rotate(90deg);
 }
 
 /* Modern Modal Body */
-.modern-modal-body {
+.mmodern-modal-body {
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -932,7 +932,7 @@
 }
 
 /* Hall Preview Card - horizontal banner */
-.modern-hall-preview-card {
+.mmodern-hall-preview-card {
   width: 100%;
   flex-shrink: 0;
   background: #ffffff;
@@ -946,11 +946,11 @@
   transition: box-shadow 0.3s ease;
 }
 
-.modern-hall-preview-card:hover {
+.mmodern-hall-preview-card:hover {
   box-shadow: 0 8px 28px rgba(0, 0, 0, 0.1);
 }
 
-.modern-hall-image {
+.mmodern-hall-image {
   width: 220px;
   min-height: 160px;
   flex-shrink: 0;
@@ -959,7 +959,7 @@
   position: relative;
 }
 
-.modern-hall-image::after {
+.mmodern-hall-image::after {
   content: '';
   position: absolute;
   top: 0;
@@ -969,7 +969,7 @@
   background: linear-gradient(to right, transparent, rgba(255,255,255,0.08));
 }
 
-.modern-hall-info {
+.mmodern-hall-info {
   padding: 20px 24px;
   display: flex;
   flex-direction: column;
@@ -978,7 +978,7 @@
   flex: 1;
 }
 
-.modern-hall-name {
+.mmodern-hall-name {
   font-size: 1.5rem;
   font-weight: 700;
   color: #0f172a;
@@ -986,14 +986,14 @@
   letter-spacing: -0.3px;
 }
 
-.modern-hall-meta {
+.mmodern-hall-meta {
   display: flex;
   align-items: center;
   gap: 12px;
   flex-wrap: wrap;
 }
 
-.modern-capacity-badge {
+.mmodern-capacity-badge {
   background: linear-gradient(135deg, #eef2ff, #e0e7ff);
   padding: 8px 16px;
   border-radius: 40px;
@@ -1005,7 +1005,7 @@
   gap: 8px;
 }
 
-.modern-status-indicator {
+.mmodern-status-indicator {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -1017,7 +1017,7 @@
   color: #334155;
 }
 
-.modern-status-dot {
+.mmodern-status-dot {
   width: 8px;
   height: 8px;
   border-radius: 50%;
@@ -1026,7 +1026,7 @@
 }
 
 /* Bookings Container - full width */
-.modern-bookings-container {
+.mmodern-bookings-container {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -1034,7 +1034,7 @@
 }
 
 /* Section Headers */
-.modern-section-header {
+.mmodern-section-header {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -1043,26 +1043,26 @@
   border-bottom: 2px solid #f1f5f9;
 }
 
-.modern-section-icon {
+.mmodern-section-icon {
   font-size: 1.5rem;
 }
 
-.modern-section-header h4 {
+.mmodern-section-header h4 {
   font-size: 1.2rem;
   font-weight: 700;
   margin: 0;
   letter-spacing: -0.2px;
 }
 
-.modern-confirmed-header h4 {
+.mmodern-confirmed-header h4 {
   color: #065f46;
 }
 
-.modern-tentative-header h4 {
+.mmodern-tentative-header h4 {
   color: #b45309;
 }
 
-.modern-booking-count {
+.mmodern-booking-count {
   background: #f1f5f9;
   border-radius: 30px;
   padding: 4px 12px;
@@ -1073,7 +1073,7 @@
 }
 
 /* Premium Booking Cards */
-.modern-booking-card {
+.mmodern-booking-card {
   background: #ffffff;
   border-radius: 16px;
   margin-bottom: 12px;
@@ -1085,7 +1085,7 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
-.modern-booking-card::before {
+.mmodern-booking-card::before {
   content: '';
   position: absolute;
   left: 0;
@@ -1096,17 +1096,17 @@
   border-radius: 0 4px 4px 0;
 }
 
-.modern-booking-card.modern-tentative-card::before {
+.mmodern-booking-card.mmodern-tentative-card::before {
   background: linear-gradient(135deg, #f59e0b, #fbbf24);
 }
 
-.modern-booking-card:hover {
+.mmodern-booking-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.12);
   border-color: #e2e8f0;
 }
 
-.modern-booking-header {
+.mmodern-booking-header {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -1115,14 +1115,14 @@
   margin-bottom: 20px;
 }
 
-.modern-event-title {
+.mmodern-event-title {
   font-size: 1.2rem;
   font-weight: 700;
   color: #0f172a;
   letter-spacing: -0.2px;
 }
 
-.modern-status-chip {
+.mmodern-status-chip {
   padding: 6px 16px;
   border-radius: 40px;
   font-size: 0.7rem;
@@ -1131,30 +1131,30 @@
   letter-spacing: 0.5px;
 }
 
-.modern-status-chip.modern-confirmed {
+.mmodern-status-chip.mmodern-confirmed {
   background: #d1fae5;
   color: #065f46;
 }
 
-.modern-status-chip.modern-tentative {
+.mmodern-status-chip.mmodern-tentative {
   background: #ffedd5;
   color: #9a3412;
 }
 
-.modern-booking-details {
+.mmodern-booking-details {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 16px;
   margin: 20px 0;
 }
 
-.modern-detail-item {
+.mmodern-detail-item {
   display: flex;
   flex-direction: column;
   gap: 6px;
 }
 
-.modern-detail-label {
+.mmodern-detail-label {
   font-size: 0.7rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -1162,7 +1162,7 @@
   color: #94a3b8;
 }
 
-.modern-detail-value {
+.mmodern-detail-value {
   font-size: 0.95rem;
   font-weight: 500;
   color: #1e293b;
@@ -1171,7 +1171,7 @@
   gap: 8px;
 }
 
-.modern-event-description {
+.mmodern-event-description {
   margin-top: 16px;
   padding: 14px 18px;
   background: #f8fafc;
@@ -1182,7 +1182,7 @@
   line-height: 1.5;
 }
 
-.modern-tentative-note {
+.mmodern-tentative-note {
   margin-top: 16px;
   background: #fffbeb;
   padding: 14px 18px;
@@ -1196,7 +1196,7 @@
 }
 
 /* Empty State */
-.modern-empty-state {
+.mmodern-empty-state {
   text-align: center;
   padding: 60px 32px;
   background: #fafcff;
@@ -1204,19 +1204,19 @@
   border: 2px dashed #e2e8f0;
 }
 
-.modern-empty-icon {
+.mmodern-empty-icon {
   font-size: 4rem;
   opacity: 0.5;
   margin-bottom: 16px;
 }
 
-.modern-empty-state p {
+.mmodern-empty-state p {
   color: #64748b;
   margin-top: 12px;
   font-size: 0.95rem;
 }
 
-.modern-available-message {
+.mmodern-available-message {
   color: #10b981;
   font-weight: 600;
   margin-top: 12px;
@@ -1224,7 +1224,7 @@
 }
 
 /* Book Button - always visible footer */
-/* .modern-book-action {
+/* .mmodern-book-action {
   padding: 16px 32px;
   border-top: 1px solid #eef2f6;
   display: flex;
@@ -1236,7 +1236,7 @@
 }
 
 
-.modern-book-now-btn{
+.mmodern-book-now-btn{
   display: flex;
   align-items: center;
   gap: 8px;
@@ -1254,20 +1254,20 @@
   box-shadow: none;
 }
 
-.modern-book-now-btn:hover {
+.mmodern-book-now-btn:hover {
   background: #4f46e5;
   color: white;
   transform: translateY(-2px);
   box-shadow: 0 8px 20px -8px rgba(79, 70, 229, 0.4);
 }
 
-.modern-book-now-btn:active
+.mmodern-book-now-btn:active
 {
   transform: translateY(0px);
 } */
 /* new */
 /* Modern Book Button - Centered and Styled as a Button */
-.modern-book-action {
+.mmodern-book-action {
   padding: 24px 32px;
   border-top: 1px solid #eef2f6;
   display: flex;
@@ -1278,7 +1278,7 @@
   z-index: 10;
 }
 
-.modern-book-now-btn {
+.mmodern-book-now-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -1302,23 +1302,23 @@
   letter-spacing: 0.3px;
 }
 
-.modern-book-now-btn:hover {
+.mmodern-book-now-btn:hover {
   background: linear-gradient(135deg, #4338ca, #4f46e5);
   color: white;
   transform: translateY(-3px);
   box-shadow: 0 8px 25px -5px rgba(79, 70, 229, 0.5);
 }
 
-.modern-book-now-btn:active {
+.mmodern-book-now-btn:active {
   transform: translateY(0px);
   box-shadow: 0 2px 8px rgba(79, 70, 229, 0.3);
 }
 
 /* Ensure the Link wrapper doesn't add extra styling */
-.modern-book-action a {
+.mmodern-book-action a {
   text-decoration: none;
 }
-.modern-back-btn {
+.mmodern-back-btn {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -1336,7 +1336,7 @@
 }
 
 
-.modern-back-btn:hover {
+.mmodern-back-btn:hover {
   background: #4f46e5;
   color: white;
   transform: translateY(-2px);
@@ -1344,83 +1344,83 @@
 }
 
 
-.modern-back-btn:active {
+.mmodern-back-btn:active {
   transform: translateY(0px);
 }
 
 
 /* Scrollbar Styling */
-.modern-modal-body::-webkit-scrollbar {
+.mmodern-modal-body::-webkit-scrollbar {
   width: 6px;
 }
 
-.modern-modal-body::-webkit-scrollbar-track {
+.mmodern-modal-body::-webkit-scrollbar-track {
   background: #f1f5f9;
   border-radius: 10px;
 }
 
-.modern-modal-body::-webkit-scrollbar-thumb {
+.mmodern-modal-body::-webkit-scrollbar-thumb {
   background: #cbd5e1;
   border-radius: 10px;
 }
 
-.modern-modal-body::-webkit-scrollbar-thumb:hover {
+.mmodern-modal-body::-webkit-scrollbar-thumb:hover {
   background: #94a3b8;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .modern-modal-body {
+  .mmodern-modal-body {
     flex-direction: column;
     gap: 24px;
     padding: 24px;
   }
   
-  .modern-hall-preview-card {
+  .mmodern-hall-preview-card {
     flex: auto;
     min-width: auto;
   }
   
-  .modern-hall-image {
+  .mmodern-hall-image {
     height: 200px;
   }
   
-  .modern-modal-title-section h3 {
+  .mmodern-modal-title-section h3 {
     font-size: 1.3rem;
   }
   
-  .modern-booking-details {
+  .mmodern-booking-details {
     grid-template-columns: 1fr;
     gap: 12px;
   }
   
-  .modern-modal-header {
+  .mmodern-modal-header {
     padding: 16px 20px;
   }
   
-  .modern-back-btn {
+  .mmodern-back-btn {
     padding: 8px 16px;
     font-size: 0.8rem;
   }
   
-  .modern-close-btn {
+  .mmodern-close-btn {
     width: 36px;
     height: 36px;
     font-size: 20px;
   }
   
-  .modern-book-action {
+  .mmodern-book-action {
     padding: 16px 24px 24px 24px;
   }
   
-  .modern-book-now-btn {
+  .mmodern-book-now-btn {
     padding: 12px 28px;
     font-size: 0.9rem;
     width: 100%;
     justify-content: center;
   }
   
-  .modern-booking-card {
+  .mmodern-booking-card {
     padding: 18px;
   }
 }
@@ -1437,10 +1437,10 @@
   }
 }
 
-.modern-booking-card {
+.mmodern-booking-card {
   animation: cardSlideIn 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 
-.modern-booking-card:nth-child(1) { animation-delay: 0.05s; }
-.modern-booking-card:nth-child(2) { animation-delay: 0.1s; }
-.modern-booking-card:nth-child(3) { animation-delay: 0.15s; }
+.mmodern-booking-card:nth-child(1) { animation-delay: 0.05s; }
+.mmodern-booking-card:nth-child(2) { animation-delay: 0.1s; }
+.mmodern-booking-card:nth-child(3) { animation-delay: 0.15s; }

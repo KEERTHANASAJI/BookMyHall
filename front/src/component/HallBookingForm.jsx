@@ -113,10 +113,17 @@ const HallBookingForm = () => {
     setShowModal(true);
   };
 
-  const closeModal = () => {
-    setShowModal(false);
-  };
+  // const closeModal = () => {
+  //   setShowModal(false);
+  // };
+const closeModal = () => {
+  setShowModal(false);
 
+  // Redirect to home page after successful booking
+  if (modalContent.type === 'success') {
+    navigate('/home');
+  }
+};
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData(prev => ({
@@ -258,7 +265,7 @@ const HallBookingForm = () => {
       if (response.ok) {
         const message = formData.bookingType === 'multiple' 
           ? `Tentative booking request submitted for ${formData.tentativeDates.length} date(s)! Your reference number: ${result.bookingReference}. You will need to confirm your final date at least one week before the event.`
-          : `Booking request submitted successfully! Your reference number: ${result.bookingReference}.`;
+          : `Booking request submitted successfully! You will be notified  once your booking is approved or rejected. `;
         
         showMessage(
           'Booking Request Submitted!', 

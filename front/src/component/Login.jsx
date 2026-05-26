@@ -107,7 +107,15 @@ function Login() {
               disabled={isLoading}
             />
           </div>
-          
+          <div className="forgot-password">
+  <button
+    type="button"
+    className="forgot-password-btn"
+    onClick={() => navigate('/forgot-password')}
+  >
+    Forgot Password?
+  </button>
+</div>
           <button 
             type="submit" 
             className="auth-button"

@@ -96,15 +96,34 @@ const activeBookings = bookings.filter(
     const targetDate = date.toDateString();
     
     return activeBookings.filter(booking => {
-      // For single booking type
-      if (booking.bookingType === 'single' && booking.startDate) {
-        const bookingDate = new Date(booking.startDate).toDateString();
-        const matchesHall = booking.preferredHall === hallName;
-        const matchesDate = bookingDate === targetDate;
-        
-        return matchesHall && matchesDate && 
-               (booking.status === 'approved' || booking.status === 'pending');
-      }
+      // For continuous/single booking type
+if (booking.bookingType === 'single' && booking.startDate) {
+
+  const startDate = new Date(booking.startDate);
+  const endDate = booking.endDate
+    ? new Date(booking.endDate)
+    : new Date(booking.startDate);
+
+  // remove time part
+  startDate.setHours(0, 0, 0, 0);
+  endDate.setHours(0, 0, 0, 0);
+
+  const currentDate = new Date(date);
+  currentDate.setHours(0, 0, 0, 0);
+
+  const matchesHall = booking.preferredHall === hallName;
+
+  // check whether selected date is between start and end
+  const matchesDate =
+    currentDate >= startDate &&
+    currentDate <= endDate;
+
+  return (
+    matchesHall &&
+    matchesDate &&
+    (booking.status === 'approved' || booking.status === 'pending')
+  );
+}
       
       // For multiple/tentative booking type
       if (
@@ -374,7 +393,7 @@ const activeBookings = bookings.filter(
                                   </div>
                                 ))}
                                 {hall.tentativeBookings.length > 2 && (
-                                  <div className="booking-preview-more">
+                                  <div className="bbooking-preview-more">
                                     +{hall.tentativeBookings.length - 2} more...
                                   </div>
                                 )}
@@ -384,7 +403,7 @@ const activeBookings = bookings.filter(
                           
                           {/* Show confirmed bookings preview */}
                           {hall.confirmedBookings.length > 0 && (
-                            <div className="booking-preview">
+                            <div className="bbooking-preview">
                               <small>
                                 <strong>Confirmed Bookings:</strong>
                                 {hall.confirmedBookings.slice(0, 2).map(booking => (
@@ -393,7 +412,7 @@ const activeBookings = bookings.filter(
                                   </div>
                                 ))}
                                 {hall.confirmedBookings.length > 2 && (
-                                  <div className="booking-preview-more">
+                                  <div className="bbooking-preview-more">
                                     +{hall.confirmedBookings.length - 2} more...
                                   </div>
                                 )}
@@ -412,77 +431,77 @@ const activeBookings = bookings.filter(
                 <>
                  
 {/* Modern Elegant Modal Design for Hall Details */}
-<div className="modern-modal-overlay" style={{ position: 'relative', background: 'transparent', backdropFilter: 'none' }}>
-  <div className="modern-modal-container" style={{ width: '100%', maxWidth: '1100px' }}>
-    <div className="modern-modal-header">
-      <button className="modern-back-btn" onClick={handleBackToHalls}>
+<div className="mmodern-modal-overlay" style={{ position: 'relative', background: 'transparent', backdropFilter: 'none' }}>
+  <div className="mmodern-modal-container" style={{ width: '100%', maxWidth: '1100px' }}>
+    <div className="mmodern-modal-header">
+      <button className="mmodern-back-btn" onClick={handleBackToHalls}>
         <span>←</span> Back to Halls
       </button>
-      <div className="modern-modal-title-section">
+      <div className="mmodern-modal-title-section">
         <h3>{selectedHall.name}</h3>
-        <div className="modern-modal-date">
+        <div className="mmodern-modal-date">
           <span>📅</span> {formatDate(selectedDate)}
         </div>
       </div>
-      <button className="modern-close-btn" onClick={() => setShowAvailability(false)}>
+      <button className="mmodern-close-btn" onClick={() => setShowAvailability(false)}>
         ✕
       </button>
     </div>
 
-    <div className="modern-modal-body">
+    <div className="mmodern-modal-body">
       {/* Left Column - Hall Preview Card */}
-      <div className="modern-hall-preview-card">
-        <div className="modern-hall-image" style={{ backgroundImage: `url(${selectedHall.image})` }}></div>
-        <div className="modern-hall-info">
-          <div className="modern-hall-name">{selectedHall.name}</div>
-          <div className="modern-hall-meta">
-            <span className="modern-capacity-badge">👥 Capacity: {selectedHall.capacity} people</span>
-            <span className="modern-status-indicator">
-              <span className="modern-status-dot"></span> Active Hall
+      <div className="mmodern-hall-preview-card">
+        <div className="mmodern-hall-image" style={{ backgroundImage: `url(${selectedHall.image})` }}></div>
+        <div className="mmodern-hall-info">
+          <div className="mmodern-hall-name">{selectedHall.name}</div>
+          <div className="mmodern-hall-meta">
+            <span className="mmodern-capacity-badge">👥 Capacity: {selectedHall.capacity} people</span>
+            <span className="mmodern-status-indicator">
+              <span className="mmodern-status-dot"></span> Active Hall
             </span>
           </div>
         </div>
       </div>
 
       {/* Right Column - Bookings Container */}
-      <div className="modern-bookings-container">
+      <div className="mmodern-bookings-container">
         {/* Confirmed Bookings Section */}
         {selectedHall.confirmedBookings && selectedHall.confirmedBookings.length > 0 && (
-          <div className="booking-section">
-            <div className="modern-section-header modern-confirmed-header">
-              <span className="modern-section-icon">✅</span>
+          <div className="bbooking-section">
+            <div className="mmodern-section-header mmodern-confirmed-header">
+              <span className="mmodern-section-icon">✅</span>
               <h4>Confirmed Bookings</h4>
-              <span className="modern-booking-count">{selectedHall.confirmedBookings.length}</span>
+              <span className="mmodern-booking-count">{selectedHall.confirmedBookings.length}</span>
             </div>
-            <div className="bookings-list">
+            <div className="bbookings-list">
               {selectedHall.confirmedBookings.map(booking => (
-                <div key={booking._id} className="modern-booking-card">
-                  <div className="modern-booking-header">
-                    <span className="modern-event-title">{booking.eventName}</span>
-                    <span className="modern-status-chip modern-confirmed">Confirmed</span>
+                <div key={booking._id} className="mmodern-booking-card">
+                  <div className="mmodern-booking-header">
+                    <span className="mmodern-event-title">{booking.eventName}</span>
+                    <span className="mmodern-status-chip mmodern-confirmed">Confirmed</span>
                   </div>
-                  <div className="modern-booking-details">
-                    <div className="modern-detail-item">
-                      <span className="modern-detail-label">⏰ Time</span>
-                      <span className="modern-detail-value">
+                  <div className="mmodern-booking-details">
+                    <div className="mmodern-detail-item">
+                      <span className="mmodern-detail-label">⏰ Time</span>
+                      <span className="mmodern-detail-value">
                         {formatTime(booking.startTime)} – {formatTime(booking.endTime)}
                       </span>
                     </div>
-                    <div className="modern-detail-item">
-                      <span className="modern-detail-label">👤 Organizer</span>
-                      <span className="modern-detail-value">{booking.fullName}</span>
+                    <div className="mmodern-detail-item">
+                      <span className="mmodern-detail-label">👤 Organizer</span>
+                      <span className="mmodern-detail-value">{booking.fullName}</span>
                     </div>
-                    <div className="modern-detail-item">
-                      <span className="modern-detail-label">📧 Email</span>
-                      <span className="modern-detail-value">{booking.email}</span>
+                    <div className="mmodern-detail-item">
+                      <span className="mmodern-detail-label">📧 Email</span>
+                      <span className="mmodern-detail-value">{booking.email}</span>
                     </div>
-                    <div className="modern-detail-item">
-                      <span className="modern-detail-label">🎭 Event Type</span>
-                      <span className="modern-detail-value">{booking.eventType}</span>
+                    <div className="mmodern-detail-item">
+                      <span className="mmodern-detail-label">🎭 Event Type</span>
+                      <span className="mmodern-detail-value">{booking.eventType}</span>
                     </div>
                   </div>
                   {booking.description && (
-                    <div className="modern-event-description">
+                    <div className="mmodern-event-description">
                       📝 {booking.description}
                     </div>
                   )}
@@ -494,11 +513,11 @@ const activeBookings = bookings.filter(
 
         {/* Tentative Bookings Section */}
         {selectedHall.tentativeBookings && selectedHall.tentativeBookings.length > 0 && (
-          <div className="booking-section">
-            <div className="modern-section-header modern-tentative-header">
-              <span className="modern-section-icon">⏳</span>
+          <div className="bbooking-section">
+            <div className="mmodern-section-header mmodern-tentative-header">
+              <span className="mmodern-section-icon">⏳</span>
               <h4>Tentative Bookings (Pending Approval)</h4>
-              <span className="modern-booking-count">{selectedHall.tentativeBookings.length}</span>
+              <span className="mmodern-booking-count">{selectedHall.tentativeBookings.length}</span>
             </div>
             <div className="bookings-list">
               {selectedHall.tentativeBookings.map(booking => {
@@ -507,36 +526,36 @@ const activeBookings = bookings.filter(
                 );
                 return (
                   <div key={booking._id} className="modern-booking-card modern-tentative-card">
-                    <div className="modern-booking-header">
-                      <span className="modern-event-title">{booking.eventName}</span>
-                      <span className="modern-status-chip modern-tentative">Tentative</span>
+                    <div className="mmodern-booking-header">
+                      <span className="mmodern-event-title">{booking.eventName}</span>
+                      <span className="mmodern-status-chip mmodern-tentative">Tentative</span>
                     </div>
-                    <div className="modern-booking-details">
-                      <div className="modern-detail-item">
-                        <span className="modern-detail-label">⏰ Proposed Time</span>
-                        <span className="modern-detail-value">
+                    <div className="mmodern-booking-details">
+                      <div className="mmodern-detail-item">
+                        <span className="mmodern-detail-label">⏰ Proposed Time</span>
+                        <span className="mmodern-detail-value">
                           {tentativeDate ? `${formatTime(tentativeDate.startTime)} – ${formatTime(tentativeDate.endTime)}` : 'Time TBD'}
                         </span>
                       </div>
-                      <div className="modern-detail-item">
-                        <span className="modern-detail-label">👤 Organizer</span>
-                        <span className="modern-detail-value">{booking.fullName}</span>
+                      <div className="mmodern-detail-item">
+                        <span className="mmodern-detail-label">👤 Organizer</span>
+                        <span className="mmodern-detail-value">{booking.fullName}</span>
                       </div>
-                      <div className="modern-detail-item">
-                        <span className="modern-detail-label">📧 Email</span>
-                        <span className="modern-detail-value">{booking.email}</span>
+                      <div className="mmodern-detail-item">
+                        <span className="mmodern-detail-label">📧 Email</span>
+                        <span className="mmodern-detail-value">{booking.email}</span>
                       </div>
-                      <div className="modern-detail-item">
-                        <span className="modern-detail-label">🎭 Event Type</span>
-                        <span className="modern-detail-value">{booking.eventType}</span>
+                      <div className="mmodern-detail-item">
+                        <span className="mmodern-detail-label">🎭 Event Type</span>
+                        <span className="mmodern-detail-value">{booking.eventType}</span>
                       </div>
                     </div>
                     {booking.description && (
-                      <div className="modern-event-description">
+                      <div className="mmodern-event-description">
                         📌 {booking.description}
                       </div>
                     )}
-                    <div className="modern-tentative-note">
+                    <div className="mmodern-tentative-note">
                       <span>⏱️</span> This booking is pending admin approval. Confirmation will be notified via email.
                     </div>
                   </div>
@@ -549,10 +568,10 @@ const activeBookings = bookings.filter(
         {/* Empty State */}
         {(!selectedHall.confirmedBookings || selectedHall.confirmedBookings.length === 0) && 
          (!selectedHall.tentativeBookings || selectedHall.tentativeBookings.length === 0) && (
-          <div className="modern-empty-state">
-            <div className="modern-empty-icon">🏛️</div>
+          <div className="mmodern-empty-state">
+            <div className="mmodern-empty-icon">🏛️</div>
             <p>No bookings for this hall on {formatDate(selectedDate)}</p>
-            <p className="modern-available-message">✨ This hall is completely available! ✨</p>
+            <p className="mmodern-available-message">✨ This hall is completely available! ✨</p>
           </div>
         )}
       </div>
@@ -569,7 +588,7 @@ const activeBookings = bookings.filter(
           }
         }}
       >
-        <button className="modern-book-now-btn">
+        <button className="mmodern-book-now-btn">
          Book This Hall <span>→</span>
         </button>
       </Link>
